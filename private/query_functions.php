@@ -4,9 +4,13 @@
     global $db;
     $sql = "SELECT * FROM `" . $table ."` ";
     $sql .= "ORDER BY name ASC";
-    $result = mysqli_query($db, $sql);
-    confirm_result_set($result);
-    return $result;
+    $query_result = mysqli_query($db, $sql);
+    confirm_result_set($query_result);
+    while($result = mysqli_fetch_assoc($query_result)) {
+      $results[] = $result;
+    }
+    mysqli_free_result($query_result);
+    return $results;
   }
 
   function find_entry_by_id($table, $id) {
