@@ -2,15 +2,23 @@
 
 <?php
   $id = $_GET['id'];
-  $entry = find_entry_by_id("tracks", $id);
-  // print_r($entry);
+  $track = find_entry_by_id("tracks", $id);
+  $times = find_times_by_track_id($id);
+  // print_r($times);
+  print_r($times);
 ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 
+<h2><?php echo $track['name']; ?></h2>
 
-<h2><?php echo $entry['name']; ?></h2>
+<h4>Top Times</h4>
+<ul>
+  <?php foreach($times as $time): ?>
+    <li><?php echo  ?></li>
+  <?php endforeach ?>
+</ul>
 
 <a href="<?php echo url_for('times/new.php?id=' . $id); ?>">Add a Time</a>
 <br>

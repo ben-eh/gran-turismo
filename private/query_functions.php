@@ -4,18 +4,18 @@
     global $db;
     $sql = "SELECT * FROM `" . $table ."` ";
     $sql .= "ORDER BY name ASC";
-    $query_result = mysqli_query($db, $sql);
-    confirm_result_set($query_result);
-    while($result = mysqli_fetch_assoc($query_result)) {
+    $result_set = mysqli_query($db, $sql);
+    confirm_result_set($result_set);
+    while($result = mysqli_fetch_assoc($result_set)) {
       $results[] = $result;
     }
-    mysqli_free_result($query_result);
+    mysqli_free_result($result_set);
     return $results;
   }
 
   function find_entry_by_id($table, $id) {
     global $db;
-    $id = $_GET['id'];
+    // $id = $_GET['id'];
     $sql = "SELECT * FROM `" . $table . "` WHERE `id` = '" . $id . "'";
     $result_set = mysqli_query($db, $sql);
     confirm_result_set($result_set);
@@ -23,6 +23,24 @@
     mysqli_free_result($result_set); // releasing returned data 'cause it's saved in a variable now
     // print_r($entry);
     return $entry;
+  }
+
+  function find_times_by_track_id($id) {
+    global $db;
+    $sql = "SELECT times.lap, times.track_id, users.name AS 'driver', cars.name AS 'car' ";
+    $sql .= "FROM `times` ";
+    $sql .= "INNER JOIN `users` ON times.user_id=users.id ";
+    $sql .= "INNER JOIN `cars` ON times.car_id=cars.id ";
+    $sql .= "WHERE `track_id`='" . $id . "'";
+    $result_set = mysqli_query($db, $sql);
+    confirm_result_set($result_set);
+    $results = [];
+    while($result = mysqli_fetch_assoc($result_set)) {
+      $results[] = $result;
+    }
+    mysqli_free_result($result_set);
+    echo count($results);
+    return $results;
   }
 
   function update_track($track) {
