@@ -17,13 +17,25 @@
 
 
 <h2><?php echo $track['name']; ?></h2>
-
 <h4>Top Times</h4>
-<ol>
-  <?php foreach($times as $key => $value): ?>
-    <li><?php echo lap_time_to_printout($times[$key]['lap']); ?></li>
-  <?php endforeach ?>
-</ol>
+
+<table>
+  <tr>
+    <th>Lap Time</th>
+    <th>Driver</th>
+    <th>Car</th>
+  </tr>
+  <?php foreach($times as $key => $value) { ?>
+    <tr>
+    <?php $print_time = lap_time_to_printout($value['lap']); ?>
+    <td>
+      <li><?php echo $print_time['minutes'] . ":" . str_pad($print_time['seconds'], 2, '0', STR_PAD_LEFT) . ":" . str_pad($print_time['milliseconds'], 3, '0', STR_PAD_LEFT); ?></li>
+    </td>
+    <td><?php echo $value['driver']; ?></td>
+    <td><?php echo $value['car']; ?></td>
+    </tr>
+  <?php } ?>
+</table>
 
 <a href="<?php echo url_for('times/new.php?id=' . $id); ?>">Add a Time</a>
 <br>
