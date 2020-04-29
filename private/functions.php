@@ -47,8 +47,17 @@ function is_get_request() {
   return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
 
-function lap_to_output($lap) {
-
+function lap_time_to_printout($time) {
+  $track_time = [];
+  $minutes = intdiv($time, 60000);
+  $track_time['minutes'] = $minutes;
+  $time -= ($minutes * 60000);
+  $seconds = intdiv($time, 1000);
+  $track_time['seconds'] = $seconds;
+  $time -= ($seconds * 1000);
+  $milliseconds = $time;
+  $track_time['milliseconds'] = $milliseconds;
+  return $track_time;
 }
 
 ?>
