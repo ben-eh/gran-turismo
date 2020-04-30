@@ -27,6 +27,8 @@ $track = find_entry_by_id("tracks", $track_id); ?>
     <?php endforeach ?>
   </select>
   <br>
+  <input type="text" name="bhp" placeholder="BHP">
+  <br>
   <input type="hidden" name="track_id" value="<?php echo $track_id; ?>">
   <input type="submit" value="Submit">
 </form>

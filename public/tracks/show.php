@@ -4,13 +4,12 @@
   $id = $_GET['id'];
   $track = find_entry_by_id("tracks", $id);
   $times = find_times_by_track_id($id);
-  echo gettype($times);
+  // echo gettype($times);
   // print_r($times);
-  print_r($times);
-  echo $times[0]['lap'];
-  echo $times[1]['lap'];
-  $laps = lap_time_to_printout($times[0]['lap']);
-  print_r($laps);
+  // print_r($times);
+  // echo $times[0]['lap'];
+  // echo $times[1]['lap'];
+  // print_r($laps);
 ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>

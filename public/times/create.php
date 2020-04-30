@@ -9,14 +9,17 @@
     $user_id = $_POST['driver'];
     $car_id = $_POST['car'];
     $track_id = $_POST['track_id'];
+    $bhp = $_POST['bhp'];
     $lap = ($minutes * 60000) + ($seconds * 1000) + $milliseconds;
 
-    $sql = "INSERT INTO `times` (`lap`, `track_id`, `car_id`, `user_id`) ";
+    $sql = "INSERT INTO `times` (`lap`, `track_id`, `car_id`, `user_id`, `bhp`, `power_group`) ";
     $sql .= "VALUES (";
     $sql .= "'" . $lap . "', ";
     $sql .= "'" . $track_id . "', ";
     $sql .= "'" . $car_id . "', ";
-    $sql .= "'" . $user_id . "'";
+    $sql .= "'" . $user_id . "', ";
+    $sql .= "'" . $bhp . "', ";
+    $sql .= "'" . generate_bhp_group($bhp) . "'";
     $sql .= ")";
 
     $query_result = mysqli_query($db, $sql);

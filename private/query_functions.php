@@ -32,7 +32,7 @@
     $sql .= "INNER JOIN `users` ON times.user_id=users.id ";
     $sql .= "INNER JOIN `cars` ON times.car_id=cars.id ";
     $sql .= "WHERE `track_id`='" . $id . "' ";
-    $sql .= "ORDER BY `bhp` ASC ";
+    $sql .= "ORDER BY `lap` ASC ";
     $sql .= "LIMIT 10";
     $result_set = mysqli_query($db, $sql);
     confirm_result_set($result_set);
