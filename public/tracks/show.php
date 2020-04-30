@@ -24,6 +24,7 @@
     <th>Lap Time</th>
     <th>Driver</th>
     <th>Car</th>
+    <th>BHP</th>
   </tr>
   <?php foreach($times as $key => $value) { ?>
     <tr>
@@ -33,6 +34,7 @@
     </td>
     <td><?php echo $value['driver']; ?></td>
     <td><?php echo $value['car']; ?></td>
+    <td><?php echo $value['bhp']; ?></td>
     </tr>
   <?php } ?>
 </table>
