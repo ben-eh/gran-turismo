@@ -19,7 +19,7 @@
     $sql .= "'" . $car_id . "', ";
     $sql .= "'" . $user_id . "', ";
     $sql .= "'" . $bhp . "', ";
-    $sql .= "'" . generate_bhp_group($bhp) . "'";
+    $sql .= "'" . populate_bhp_group($bhp) . "'";
     $sql .= ")";
 
     $query_result = mysqli_query($db, $sql);
