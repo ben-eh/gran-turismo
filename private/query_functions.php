@@ -27,7 +27,7 @@
 
   function find_times_by_track_id($id) {
     global $db;
-    $sql = "SELECT times.lap, times.bhp, times.track_id, users.name AS 'driver', cars.name AS 'car' ";
+    $sql = "SELECT times.lap, times.bhp, times.power_group, times.track_id, users.name AS 'driver', cars.name AS 'car' ";
     $sql .= "FROM `times` ";
     $sql .= "INNER JOIN `users` ON times.user_id=users.id ";
     $sql .= "INNER JOIN `cars` ON times.car_id=cars.id ";

@@ -65,4 +65,14 @@ function populate_bhp_group($bhp) {
   return $group;
 }
 
+function get_groups($times) {
+  $groups = [];
+  foreach ($times as $key => $value) {
+    $groups[] = $value['power_group'];
+  }
+  $groups = array_unique($groups);
+  sort($groups);
+  return $groups;
+}
+
 ?>

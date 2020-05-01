@@ -4,12 +4,14 @@
   $id = $_GET['id'];
   $track = find_entry_by_id("tracks", $id);
   $times = find_times_by_track_id($id);
+  $groups = get_groups($times);
   // echo gettype($times);
   // print_r($times);
   // print_r($times);
   // echo $times[0]['lap'];
   // echo $times[1]['lap'];
   // print_r($laps);
+  print_r($groups);
 ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>
@@ -37,6 +39,12 @@
     </tr>
   <?php } ?>
 </table>
+
+<ul>
+  <?php foreach ($groups as $key => $value) { ?>
+    <li><a href="#"><button><?php echo $value . " HP Class"; ?></button></a></li>
+  <?php } ?>
+</ul>
 
 <a href="<?php echo url_for('times/new.php?id=' . $id); ?>">Add a Time</a>
 <br>
