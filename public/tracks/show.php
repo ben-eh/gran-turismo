@@ -3,7 +3,8 @@
 <?php
   $id = $_GET['id'];
   $track = find_entry_by_id("tracks", $id);
-  $times = find_times_by_track_id($id);
+  $times = isset($_GET['pg']) ? find_times_by_track_and_pg($id, $_GET['pg']) : find_times_by_track_id($id);
+  // $times = find_times_by_track_id($id);
   $groups = get_groups($times);
   // echo gettype($times);
   // print_r($times);
@@ -42,7 +43,7 @@
 
 <ul>
   <?php foreach ($groups as $key => $value) { ?>
-    <li><a href="#"><button><?php echo $value . " HP Class"; ?></button></a></li>
+    <li><a href="<?php echo url_for('tracks/show.php?id=' . h(u($id)) . '&pg=' . h(u($value))); ?>"><button><?php echo $value-100 . "-" . $value . " HP Class"; ?></button></a></li>
   <?php } ?>
 </ul>
 

@@ -45,6 +45,27 @@
     return $results;
   }
 
+  function find_times_by_track_and_pg($id, $pg) {
+    global $db;
+    $sql = "SELECT times.lap, times.bhp, times.power_group, times.track_id, users.name AS 'driver', cars.name AS 'car' ";
+    $sql .= "FROM `times` ";
+    $sql .= "INNER JOIN `users` ON times.user_id=users.id ";
+    $sql .= "INNER JOIN `cars` ON times.car_id=cars.id ";
+    $sql .= "WHERE `track_id`='" . $id . "' ";
+    $sql .= "AND `power_group`='" . $pg . "' ";
+    $sql .= "ORDER BY `lap` ASC ";
+    $sql .= "LIMIT 10";
+    $result_set = mysqli_query($db, $sql);
+    confirm_result_set($result_set);
+    $results = [];
+    while($result = mysqli_fetch_assoc($result_set)) {
+      $results[] = $result;
+    }
+    mysqli_free_result($result_set);
+    echo count($results);
+    return $results;
+  }
+
   function update_track($track) {
     global $db;
     $sql = "UPDATE `tracks` SET ";
