@@ -1,9 +1,5 @@
 <?php
 
-function test_greeting() {
-  return "Hello world";
-};
-
 function url_for($script_path) {
   // add leading '/' if not present
   if($script_path[0] != '/') {
@@ -73,6 +69,19 @@ function get_groups($times) {
   $groups = array_unique($groups);
   sort($groups);
   return $groups;
+}
+
+function display_errors($errors=array()) {
+  $output = '';
+  if(!empty($errors)) {
+    $output .= "<p>Please fix the following errors</p>";
+    $output .= "<ul>";
+    foreach ($errors as $key => $value) {
+      $output .= "<li>" . h($value) . "</li>";
+    }
+    $output .= "</ul>";
+  }
+  return $output;
 }
 
 ?>

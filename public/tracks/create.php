@@ -5,27 +5,21 @@
   require_once('../../private/initialize.php');
 
   if(is_post_request()) {
-    $name = $_POST['name'];
-    $image = $_POST['image'];
-    $length = $_POST['length'];
+    $track = [];
+    $track['name'] = $_POST['name'];
+    $track['image'] = $_POST['image'];
+    $track['length'] = $_POST['length'];
 
-    $sql = "INSERT INTO `tracks` (`name`, `image`, `length`) ";
-    $sql .= "VALUES (";
-    $sql .= "'" . $name . "', ";
-    $sql .= "'" . $image . "', ";
-    $sql .= "'" . $length . "'";
-    $sql .= ")";
-    $result = mysqli_query($db, $sql);
-    // For INSERT statements, $result is a boolean
+    $result = insert_track($track);
 
-    if($result) {
+    if($result === true) {
       $new_id = mysqli_insert_id($db);
-      redirect_to(url_for('index.php'));
+      redirect_to(url_for('tracks/show.php?id=' . $new_id));
     } else {
-      echo mysqli_error($db);
-      db_disconnect($db);
-      exit;
+      $errors = $result;
+      var_dump($errors);
     }
+
   } else {
     redirect_to(url_for('/tracks/new.php'));
   }

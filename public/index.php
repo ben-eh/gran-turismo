@@ -14,7 +14,6 @@
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <h1>Testing</h1>
-<!-- <p><?php echo test_greeting(); ?></p> -->
 
 <ul>
 <!--   <?php while($track = mysqli_fetch_assoc($tracks_set)): ?>

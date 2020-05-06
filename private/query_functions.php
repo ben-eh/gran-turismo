@@ -25,6 +25,47 @@
     return $entry;
   }
 
+  function validate_track($track) {
+    $errors = [];
+    // name
+    if(is_blank($track['name'])) {
+      $errors[] = "name cannot be blank";
+    }
+
+    // length
+    if(is_blank($track['length'])) {
+      $errors[] = "track needs a length";
+    }
+
+    return $errors;
+  }
+
+  function insert_track($track) {
+    global $db;
+
+    $errors = validate_track($track);
+    if(!empty($errors)) {
+      return $errors;
+    }
+
+    $sql = "INSERT INTO `tracks` (`name`, `image`, `length`) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $track['name'] . "', ";
+    $sql .= "'" . $track['image'] . "', ";
+    $sql .= "'" . $track['length'] . "'";
+    $sql .= ")";
+    $result = mysqli_query($db, $sql);
+    // For INSERT statements, $result is a boolean
+
+    if($result) {
+      return true;
+    } else {
+      echo mysqli_error($db);
+      db_disconnect($db);
+      exit;
+    }
+  }
+
   function find_times_by_track_id($id) {
     global $db;
     $sql = "SELECT times.lap, times.bhp, times.power_group, times.track_id, users.name AS 'driver', cars.name AS 'car' ";
@@ -68,6 +109,13 @@
 
   function update_track($track) {
     global $db;
+
+    $errors = validate_track($track);
+
+    if(!empty($errors)) {
+      return $errors;
+    }
+
     $sql = "UPDATE `tracks` SET ";
     $sql .= "name='" . $track['name'] . "', ";
     $sql .= "image='" . $track['image'] . "', ";
