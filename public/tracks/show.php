@@ -27,6 +27,7 @@
     <th>Driver</th>
     <th>Car</th>
     <th>BHP</th>
+    <th>&nbsp</th>
   </tr>
   <?php foreach($times as $key => $value) { ?>
     <tr>
@@ -37,6 +38,7 @@
     <td><?php echo $value['driver']; ?></td>
     <td><?php echo $value['car']; ?></td>
     <td><?php echo $value['bhp']; ?></td>
+    <td><a href="<?php echo url_for('/times/edit.php?id=' . h(u($value['id']))); ?>">Edit</a></td>
     </tr>
   <?php } ?>
 </table>

@@ -21,7 +21,7 @@
 <a href="<?php echo url_for('tracks/show.php?id=' . $id); ?>">Cancel</a>
 
 <form action="<?php echo url_for('/tracks/delete.php?id=' . h(u($track['id']))); ?>" method="post">
-  <input type="submit" name="commit" value="Delete Subject" />
+  <input type="submit" name="commit" value="Delete Track" />
 </form>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

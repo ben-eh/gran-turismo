@@ -12,9 +12,9 @@ if(is_post_request()) {
   $result = insert_track($track);
 
   if($result === true) {
-    // $new_id = mysqli_insert_id($db);
-    // redirect_to(url_for('tracks/show.php?id=' . $new_id));
-    echo "no errors";
+    $new_id = mysqli_insert_id($db);
+    redirect_to(url_for('tracks/show.php?id=' . $new_id));
+    // echo "no errors";
   } else {
     $errors = $result;
   }
