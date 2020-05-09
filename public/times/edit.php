@@ -39,7 +39,7 @@ print_r($lap_info);
 <br>
 
 <button>
-  <a href="<?php echo url_for('index.php'); ?>">Cancel</a>
+  <a href="<?php echo url_for('tracks/show.php?id=' . $track_id); ?>">Cancel</a>
 </button>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

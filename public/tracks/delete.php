@@ -15,7 +15,7 @@
 <?php $page_title = 'Delete Track'; ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h2>Delete Subject</h2>
+<h2>Delete Track</h2>
 <br>
 <p>Are you sure you want to delete the <?php echo $track['name']; ?> entry?</p>
 <a href="<?php echo url_for('tracks/show.php?id=' . $id); ?>">Cancel</a>

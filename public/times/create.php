@@ -27,7 +27,7 @@
     if($query_result) {
       redirect_to(url_for('tracks/show.php?id=' . u($track_id)));
     } else {
-      redirect_to(url_for('tracks/new.php?id=' . u($track_id)));
+      redirect_to(url_for('tracks/show.php?id=' . u($track_id)));
     }
   }
 

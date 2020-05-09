@@ -36,7 +36,7 @@ $track = find_entry_by_id("tracks", $track_id); ?>
 <br>
 
 <button>
-  <a href="<?php echo url_for('index.php'); ?>">Cancel</a>
+  <a href="<?php echo url_for('tracks/show.php?id=' . h(u($track_id))); ?>">Cancel</a>
 </button>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

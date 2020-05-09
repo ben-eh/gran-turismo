@@ -28,17 +28,19 @@
     <th>Car</th>
     <th>BHP</th>
     <th>&nbsp</th>
+    <th>&nbsp</th>
   </tr>
   <?php foreach($times as $key => $value) { ?>
     <tr>
     <?php $print_time = lap_time_to_printout($value['lap']); ?>
     <td>
-      <li><?php echo $print_time['minutes'] . ":" . str_pad($print_time['seconds'], 2, '0', STR_PAD_LEFT) . ":" . str_pad($print_time['milliseconds'], 3, '0', STR_PAD_LEFT); ?></li>
+      <?php echo $print_time['minutes'] . ":" . str_pad($print_time['seconds'], 2, '0', STR_PAD_LEFT) . ":" . str_pad($print_time['milliseconds'], 3, '0', STR_PAD_LEFT); ?>
     </td>
     <td><?php echo $value['driver']; ?></td>
     <td><?php echo $value['car']; ?></td>
     <td><?php echo $value['bhp']; ?></td>
     <td><a href="<?php echo url_for('/times/edit.php?id=' . h(u($value['id']))); ?>">Edit</a></td>
+    <td><a href="<?php echo url_for('/times/delete.php?id=' . h(u($value['id'])) . '&track_id=' . h(u($id))); ?>">Delete</a></td>
     </tr>
   <?php } ?>
 </table>
