@@ -1,12 +1,11 @@
 <?php include_once('../../private/initialize.php');
 
-$time_id = $_GET['id'];
+$time_id = $_GET['time_id'];
 $lap_info = select_lap($time_id);
 $printable_lap = lap_time_to_printout($lap_info['lap']);
 $track_id = $lap_info['track_id'];
 $users = find_all_entries("users");
 $cars = find_all_entries("cars");
-print_r($lap_info);
 
 ?>
 
@@ -39,7 +38,7 @@ print_r($lap_info);
 <br>
 
 <button>
-  <a href="<?php echo url_for('tracks/show.php?id=' . $track_id); ?>">Cancel</a>
+  <a href="<?php echo url_for('tracks/show.php?track_id=' . $track_id); ?>">Cancel</a>
 </button>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

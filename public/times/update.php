@@ -29,7 +29,7 @@
     $query_result = mysqli_query($db, $sql);
 
     if($query_result) {
-      redirect_to(url_for('tracks/show.php?id=' . u($track_id)));
+      redirect_to(url_for('tracks/show.php?track_id=' . u($track_id)));
       // echo "should be successful";
     } else {
       // redirect_to(url_for('index.php'));

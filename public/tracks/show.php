@@ -1,18 +1,14 @@
 <?php require_once('../../private/initialize.php'); ?>
 
 <?php
-  $id = $_GET['id'];
-  $track = find_entry_by_id("tracks", $id);
-  $times = isset($_GET['pg']) ? find_times_by_track_and_pg($id, $_GET['pg']) : find_times_by_track_id($id);
-  // $times = find_times_by_track_id($id);
+  $track_id = $_GET['track_id'];
+  $track = find_entry_by_id("tracks", $track_id);
+  $times = isset($_GET['pg']) ? find_times_by_track_and_pg($track_id, $_GET['pg']) : find_times_by_track_id($track_id);
   $groups = get_groups($times);
-  // echo gettype($times);
+  // echo $track_id;
+  // print_r($track);
+  // print_r($groups);
   // print_r($times);
-  // print_r($times);
-  // echo $times[0]['lap'];
-  // echo $times[1]['lap'];
-  // print_r($laps);
-  print_r($groups);
 ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>
@@ -39,24 +35,24 @@
     <td><?php echo $value['driver']; ?></td>
     <td><?php echo $value['car']; ?></td>
     <td><?php echo $value['bhp']; ?></td>
-    <td><a href="<?php echo url_for('/times/edit.php?id=' . h(u($value['id']))); ?>">Edit</a></td>
-    <td><a href="<?php echo url_for('/times/delete.php?id=' . h(u($value['id'])) . '&track_id=' . h(u($id))); ?>">Delete</a></td>
+    <td><a href="<?php echo url_for('/times/edit.php?time_id=' . h(u($value['id']))); ?>">Edit</a></td>
+    <td><a href="<?php echo url_for('/times/delete.php?time_id=' . h(u($value['id'])) . '&track_id=' . h(u($track_id))); ?>">Delete</a></td>
     </tr>
   <?php } ?>
 </table>
 
 <ul>
   <?php foreach ($groups as $key => $value) { ?>
-    <li><a href="<?php echo url_for('tracks/show.php?id=' . h(u($id)) . '&pg=' . h(u($value))); ?>"><button><?php echo $value-100 . "-" . $value . " HP Class"; ?></button></a></li>
+    <li><a href="<?php echo url_for('tracks/show.php?track_id=' . h(u($track_id)) . '&pg=' . h(u($value))); ?>"><button><?php echo $value-100 . "-" . $value . " HP Class"; ?></button></a></li>
   <?php } ?>
 </ul>
 
-<a href="<?php echo url_for('times/new.php?id=' . $id); ?>">Add a Time</a>
+<a href="<?php echo url_for('times/new.php?track_id=' . $track_id); ?>">Add a Time</a>
 <br>
 <a href="<?php echo url_for('index.php'); ?>">Back to Index</a>
 <br>
-<a href="<?php echo url_for('tracks/edit.php?id=' . h(u($id))); ?>">Edit Track</a>
+<a href="<?php echo url_for('tracks/edit.php?track_id=' . h(u($track_id))); ?>">Edit Track</a>
 <br>
-<a href="<?php echo url_for('tracks/delete.php?id=' . h(u($id))); ?>">Delete Track</a>
+<a href="<?php echo url_for('tracks/delete.php?track_id=' . h(u($track_id))); ?>">Delete Track</a>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

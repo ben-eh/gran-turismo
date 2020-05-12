@@ -1,7 +1,8 @@
 <?php include_once('../../private/initialize.php'); ?>
 
-<?php $track_id = $_GET['id'];
+<?php $track_id = $_GET['track_id'];
 $track = find_entry_by_id("tracks", $track_id); ?>
+<?php print_r($track_id); ?>
 <h2>New Time for <?php echo $track['name']; ?></h2>
 <?php
 
@@ -36,7 +37,7 @@ $track = find_entry_by_id("tracks", $track_id); ?>
 <br>
 
 <button>
-  <a href="<?php echo url_for('tracks/show.php?id=' . h(u($track_id))); ?>">Cancel</a>
+  <a href="<?php echo url_for('tracks/show.php?track_id=' . h(u($track_id))); ?>">Cancel</a>
 </button>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
